@@ -56,3 +56,4 @@ static int lexer::getToken(){
 
     return curChar;
 }
+
