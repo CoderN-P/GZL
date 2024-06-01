@@ -1,0 +1,15 @@
+~~
+This is a simple GZL program that calculates the fibonacci number of a given number.
+~~
+
+x = 100 ratio 10 ~setting variable x to 10 (100/10 = 10)
+
+vibe fibonacci(x) {
+    sus x <= 1 {
+        drop x ~returning x if x is less than or equal to 1
+    }
+    drop fibonacci(x - 1) + fibonacci(x - 2) ~returning the sum of the two previous fibonacci numbers
+}
+
+yap(fibonacci(x)) ~printing the fibonacci number of x
+
