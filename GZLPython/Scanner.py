@@ -18,6 +18,15 @@ class Scanner:
         'vibe': TokenType.VIBE,
         'yap': TokenType.YAP,
         'ratio': TokenType.RATIO,
+        'be': TokenType.EQUAL,
+        'same': TokenType.EQUAL_EQUAL,
+        'aint': TokenType.BANG,
+        'diff': TokenType.BANG_EQUAL,
+        'smol': TokenType.LESS,
+        'smolbe': TokenType.LESS_EQUAL,
+        'thicc': TokenType.GREATER,
+        'thiccbe': TokenType.GREATER_EQUAL,
+        'lit': TokenType.LIT
     }
 
     def __init__(self, code):
@@ -59,26 +68,6 @@ class Scanner:
                 self.add_token(TokenType.SEMICOLON)
             case '*':
                 self.add_token(TokenType.STAR)
-            case '!':
-                if self.match('='):
-                    self.add_token(TokenType.BANG_EQUAL)
-                else:
-                    self.add_token(TokenType.BANG)
-            case '=':
-                if self.match('='):
-                    self.add_token(TokenType.EQUAL_EQUAL)
-                else:
-                    self.add_token(TokenType.EQUAL)
-            case '<':
-                if self.match('='):
-                    self.add_token(TokenType.LESS_EQUAL)
-                else:
-                    self.add_token(TokenType.LESS)
-            case '>':
-                if self.match('='):
-                    self.add_token(TokenType.GREATER_EQUAL)
-                else:
-                    self.add_token(TokenType.GREATER)
             case '~':
                 if self.match('~'):
                     self.multiline_comment()
@@ -119,8 +108,6 @@ class Scanner:
 
         text = self.code[self.start:self.current]
 
-        if 'yap' in text:
-            print(repr(text))
 
         token_type = self.keywords.get(text, TokenType.IDENTIFIER)
 
@@ -144,7 +131,6 @@ class Scanner:
             print(f'[{self.line}] Error: Unterminated string.')
             return
 
-        print(self.code[self.current + 1])
         self.advance()
 
         value = self.code[self.start + 1:self.current - 1]

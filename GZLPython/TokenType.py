@@ -38,4 +38,5 @@ class TokenType(Enum):
     NAH = 33
     YAP = 34
     ALSO = 35
-    EOF = 36
+    LIT = 36
+    EOF = 37
